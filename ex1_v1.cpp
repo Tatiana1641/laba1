@@ -17,5 +17,22 @@ using namespace std;
 */
 
 int main() {
+	const int N = 7;
+
+	AEROFLOT *aeroflot = new AEROFLOT[N]; // создаём массив из N элементов
+	cout << "Enter information about objects:" << endl;
+
+	// читываем информацию об N объектах
+	for (int i = 0; i < N; i++)
+		aeroflot[i].Read();
+
+	cout << endl << "Entered information: " << endl;
+
+	// выводим введённые данные
+	for (int i = 0; i < N; i++)
+		aeroflot[i].Print();
+
+	delete[] aeroflot;
+	
 	return 0;
 }
