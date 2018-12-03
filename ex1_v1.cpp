@@ -16,6 +16,24 @@ using namespace std;
 	-если таких рейсов нет, выдать на дисплей соответствующее сообщение.
 */
 
+// сортировка по алфавиту
+void SortByAlphabet(AEROFLOT *aeroflot, int n) {
+	bool isSorted = false;
+
+	while (!isSorted) {
+		isSorted = true;
+
+		for (int i = 0; i < n - 1; i++) {
+			if (aeroflot[i].getDestination() > aeroflot[i + 1].getDestination()) {
+				AEROFLOT tmp = aeroflot[i];
+				aeroflot[i] = aeroflot[i + 1];
+				aeroflot[i + 1] = tmp;
+				isSorted = false;
+			}
+		}
+	}
+}
+
 int main() {
 	const int N = 7;
 
@@ -29,6 +47,14 @@ int main() {
 	cout << endl << "Entered information: " << endl;
 
 	// выводим введённые данные
+	for (int i = 0; i < N; i++)
+		aeroflot[i].Print();
+
+	SortByAlphabet(aeroflot, N);
+
+	cout << endl << "Sorted information: " << endl;
+
+	// выводим отсортированные данные
 	for (int i = 0; i < N; i++)
 		aeroflot[i].Print();
 
