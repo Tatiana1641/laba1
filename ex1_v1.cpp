@@ -34,6 +34,25 @@ void SortByAlphabet(AEROFLOT *aeroflot, int n) {
 	}
 }
 
+// вывод на экран пунктов назначения и номеров рейсов, обслуживаемых самолетом, тип которого введен с клавиатуры
+void PrintByType(AEROFLOT *aeroflot, int n) {
+	string type;
+	cout << endl << "Enter type: ";
+	cin >> type;
+
+	int finded = 0;
+
+	for (int i = 0; i < n; i++) {
+		if (aeroflot[i].getType() == type) {
+			cout << "#" << aeroflot[i].getRoute() << ". destination: " << aeroflot[i].getDestination() << endl;
+			finded++;
+		}
+	}
+
+	if (finded == 0)
+		cout << "No routes with type '" << type << "'" << endl; 
+}
+
 int main() {
 	const int N = 7;
 
@@ -50,13 +69,15 @@ int main() {
 	for (int i = 0; i < N; i++)
 		aeroflot[i].Print();
 
-	SortByAlphabet(aeroflot, N);
+	SortByAlphabet(aeroflot, N); // сортируем по алфавиту
 
 	cout << endl << "Sorted information: " << endl;
 
 	// выводим отсортированные данные
 	for (int i = 0; i < N; i++)
 		aeroflot[i].Print();
+
+	PrintByType(aeroflot, N); // выводим номера и пункты по типу
 
 	delete[] aeroflot;
 	
